@@ -1,9 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Trunk Template</title>
-    <link data-trunk rel="sass" href="index.scss" />
-  </head>
-  <body></body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name - Portfolio</title> <link data-trunk rel="scss" href="index.scss" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      /* Basic Loader Styles */
+      #loader {
+        position: fixed; /* Cover the whole screen */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex; /* Center the spinner */
+        align-items: center;
+        justify-content: center;
+        /* Use CSS variables for background, with fallbacks */
+        background-color: var(--loader-bg, #f8f9fa); /* Default light background */
+        z-index: 9999; /* Stay on top of everything */
+        opacity: 1; /* Start visible */
+        transition: opacity 0.5s ease-out; /* Smooth fade-out transition */
+        /* Prevent interaction while visible but fading */
+        pointer-events: auto;
+      }
+
+      /* Spinner Animation */
+      .spinner {
+        /* Use CSS variables for spinner colors, with fallbacks */
+        border: 4px solid var(--loader-spinner-bg, #dee2e6); /* Lighter grey track */
+        border-top: 4px solid var(--loader-spinner-color, #007bff); /* Blue spinner color */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite; /* Rotation animation */
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Dark Mode Loader Styles */
+      body.dark-mode #loader {
+         --loader-bg: #1a1a1a; /* Match dark primary background */
+         --loader-spinner-bg: #495057; /* Darker track */
+         --loader-spinner-color: #60a5fa; /* Lighter blue for dark mode */
+      }
+
+      /* Class to hide loader (added by Yew) */
+      #loader.hidden {
+          opacity: 0;
+          pointer-events: none; /* Disable interaction when hidden */
+       }
+    </style>
+    </head>
+  <body>
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+    <div id="app-root"></div>
+    </body>
 </html>

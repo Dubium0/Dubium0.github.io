@@ -1,78 +1,556 @@
-html,
+/* index.scss */
+
+/* --- Theme Variables --- */
+:root {
+  // --- Light Mode (Default) ---
+  --bg-primary: #f8f9fa;       // Page background
+  --bg-secondary: #e9ecef;     // Alternate section background (e.g., projects)
+  --bg-card: #ffffff;          // Card background (e.g., project item)
+  --bg-hero: #343a40;         // Hero section background
+  --bg-footer: #343a40;        // Footer background
+  --bg-button-primary: #007bff;
+  --bg-button-primary-hover: #0056b3;
+  --bg-button-secondary: #6c757d;
+  --bg-button-secondary-hover: #5a6268;
+  --bg-toggle-button: #f1f3f5;
+  --bg-toggle-button-hover: #dee2e6;
+
+  --text-primary: #212529;     // Main text color
+  --text-secondary: #495057;   // Slightly lighter text (e.g., project tech label)
+  --text-muted: #6c757d;       // Muted text
+  --text-hero: #ffffff;        // Text on hero background
+  --text-hero-muted: #e9ecef;  // Muted text on hero (e.g., tagline)
+  --text-footer: #adb5bd;       // Text on footer background
+  --text-link: #007bff;
+  --text-link-hover: #0056b3;
+  --text-button-primary: #ffffff;
+  --text-button-secondary: #ffffff;
+  --text-toggle-button: #495057;
+
+  --border-color: #dee2e6;     // Borders
+  --border-photo: #ffffff;     // Profile photo border
+  --shadow-color: rgba(0, 0, 0, 0.05); // Slightly reduced shadow for subtlety
+  --shadow-color-hover: rgba(0, 0, 0, 0.1);
+  --underline-color: var(--text-link); // Section title underline
+
+  --navbar-height: 60px;
+  --navbar-bg: rgba(255, 255, 255, 0.85); // Slightly transparent navbar bg
+  --navbar-border: var(--border-color);
+  --navbar-shadow: var(--shadow-color);
+  --navbar-text: var(--text-primary);
+  --navbar-link-hover-bg: var(--bg-secondary);
+
+  // -- Animated Background Blob Colors (Light Mode) --
+  --blob-color-1: rgba(100, 150, 255, 0.3); // Soft blue
+  --blob-color-2: rgba(255, 150, 200, 0.25); // Soft pink
+  --blob-color-3: rgba(150, 255, 180, 0.2); // Soft green
+
+  --transition-speed: 0.3s;
+}
+
+body.dark-mode {
+  // --- Dark Mode Overrides ---
+  --bg-primary: #121212; // Slightly darker base
+  --bg-secondary: #1e1e1e;
+  --bg-card: #252525;
+  --bg-hero: #0f0f0f;
+  --bg-footer: #0f0f0f;
+  --bg-button-primary: #0d6efd; // Slightly brighter blue
+  --bg-button-primary-hover: #3b82f6;
+  --bg-button-secondary: #5c636a;
+  --bg-button-secondary-hover: #7d8389;
+  --bg-toggle-button: #343a40;
+  --bg-toggle-button-hover: #495057;
+
+  --text-primary: #e9ecef;     // Light text on dark background
+  --text-secondary: #adb5bd;
+  --text-muted: #868e96;
+  --text-hero: #f8f9fa;
+  --text-hero-muted: #ced4da;
+  --text-footer: #adb5bd;
+  --text-link: #60a5fa; // Lighter blue for links
+  --text-link-hover: #93c5fd;
+  --text-button-primary: #ffffff;
+  --text-button-secondary: #ffffff;
+  --text-toggle-button: #e9ecef;
+
+  --border-color: #3a3a3a; // Slightly lighter dark border
+  --border-photo: #495057;
+  --shadow-color: rgba(255, 255, 255, 0.03); // Lighter shadow on dark
+  --shadow-color-hover: rgba(255, 255, 255, 0.07);
+  --underline-color: var(--text-link);
+
+  --navbar-bg: rgba(25, 25, 25, 0.85); // Dark transparent navbar
+  --navbar-border: var(--border-color);
+  --navbar-shadow: var(--shadow-color);
+  --navbar-text: var(--text-primary);
+  --navbar-link-hover-bg: var(--bg-secondary);
+
+  // -- Animated Background Blob Colors (Dark Mode) --
+  --blob-color-1: rgba(80, 100, 200, 0.35); // Deeper blue
+  --blob-color-2: rgba(180, 80, 150, 0.3); // Deeper purple/pink
+  --blob-color-3: rgba(80, 180, 100, 0.25); // Deeper green
+}
+
+
+/* --- Apply Variables & Base Styles --- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: sans-serif;
-  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   line-height: 1.6;
-  background-color: #f4f4f4;
+  color: var(--text-primary);
+  background-color: var(--bg-primary); // Base background color
+  padding-top: var(--navbar-height); // Account for fixed navbar
+  position: relative; // Needed for pseudo-element positioning
+  overflow-x: hidden; // Prevent horizontal scroll potentially caused by blobs
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-.portfolio-container {
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* === Animated Background Blobs === */
+body::before,
+body::after {
+  content: '';
+  position: fixed; // Fixed position so they stay while scrolling
+  left: 0; // Start positioning from left
+  top: 0; // Start positioning from top
+  width: 100%; // Take full viewport width
+  height: 100%; // Take full viewport height
+  z-index: -1; // Position behind all other content
+  filter: blur(100px); // Heavy blur to make them soft blobs
+  opacity: 0.8; // Make blobs slightly less intense
+  will-change: transform, background-position; // Hint for performance
+  background-repeat: no-repeat;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem 0;
-  text-align: center;
-  border-radius: 8px 8px 0 0;
+body::before {
+  // Multiple radial gradients for the blobs
+  background-image:
+      radial-gradient(circle at 20% 30%, var(--blob-color-1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 50%, var(--blob-color-2) 0%, transparent 35%),
+      radial-gradient(circle at 50% 80%, var(--blob-color-3) 0%, transparent 45%);
+  background-size: 150% 150%; // Make gradients larger than viewport initially
+  animation: moveBlobs 30s ease-in-out infinite alternate; // Animation
+}
 
-  h1 { // Nested h1 styles
-      margin: 0;
-      padding-bottom: 0.5rem;
+// Optional: Add a second pseudo-element for more complex layering/movement
+// body::after {
+//     background-image: radial-gradient(circle at 10% 90%, var(--blob-color-3) 0%, transparent 50%);
+//     background-size: 100% 100%;
+//     animation: moveBlobsSlower 45s linear infinite alternate;
+// }
+
+@keyframes moveBlobs {
+  0% { background-position: 0% 0%; transform: scale(1) translate(0, 0); }
+  100% { background-position: 100% 100%; transform: scale(1.05) translate(5px, -5px); } // Add subtle scale/translate
+}
+
+// @keyframes moveBlobsSlower {
+//     0% { background-position: 100% 0%; }
+//     100% { background-position: 0% 100%; }
+// }
+/* === End Animated Background Blobs === */
+
+
+/* --- Navbar --- */
+.site-navbar {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  // Use backdrop-filter for a frosted glass effect if desired (check browser support)
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); // For Safari
+  box-shadow: 0 1px 3px var(--navbar-shadow); // Reduced shadow
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: 1000; // Ensure navbar stays on top
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between; // Pushes brand left, nav right
+  align-items: center; // Vertically center items
+  max-width: 1200px; // Max width for content inside navbar
+  margin: 0 auto; // Center the container
+  padding: 0 1rem; // Padding on the sides
+  height: 100%; // Take full height of parent
+}
+
+.navbar-brand a {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--navbar-text);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+  &:hover {
+      text-decoration: none; // Keep underline off for brand
+      color: var(--text-link); // Use link color on hover
   }
 }
 
-nav {
-  ul { // Nested ul styles
-      list-style: none;
-      padding: 0;
-      margin: 0;
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // Space between nav items/buttons
 
-      li { // Nested li styles
-          display: inline;
-          margin: 0 10px;
-      }
-  }
-
-  a { // Nested a styles
-      color: #fff;
+  // Styles for potential future nav links
+  a {
+      color: var(--navbar-text);
       text-decoration: none;
-
-      &:hover { // Nested pseudo-class (:hover) using the parent selector '&'
-          text-decoration: underline;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color var(--transition-speed) ease;
+      &:hover {
+          background-color: var(--navbar-link-hover-bg);
+          text-decoration: none;
       }
   }
 }
 
-main {
-  padding: 2rem 1rem;
-}
+/* --- Theme Toggle Button (Updated) --- */
+.theme-toggle-button {
+  background-color: transparent; // Make background transparent for icon button
+  color: var(--navbar-text); // Use navbar text color for icon
+  border: none; // Remove border
+  padding: 0.5rem; // Padding around the icon
+  border-radius: 50%; // Make it circular
+  cursor: pointer;
+  display: flex; // Helps center the SVG
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color var(--transition-speed) ease;
 
-section {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  // Style the SVG icon itself
+  svg {
+      width: 20px; // Consistent icon size
+      height: 20px;
+      stroke: currentColor; // Make SVG stroke color inherit from button text color
+  }
 
-  &:last-child { // Nested pseudo-class (:last-child) using the parent selector '&'
-      border-bottom: none;
+  &:hover {
+      background-color: var(--navbar-link-hover-bg); // Use link hover background
   }
 }
 
-h2 { // Remains top-level as it's not nested in the original CSS
-  color: #333;
+
+/* --- Typography --- */
+h1, h2, h3 {
+  line-height: 1.2; // Tighter line height for headings
+  margin-bottom: 0.75em; // Space below headings
+  color: var(--text-primary); /* Darker heading color */
+  transition: color var(--transition-speed) ease;
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: 1rem; // Space below paragraphs
+  transition: color var(--transition-speed) ease;
 }
 
-footer {
+a {
+  color: var(--text-link); /* Standard link blue */
+  text-decoration: none; // Remove underline by default
+  transition: color var(--transition-speed) ease;
+
+  &:hover { // SCSS nesting for hover state
+      color: var(--text-link-hover); // Darker blue on hover
+      text-decoration: underline; // Add underline on hover
+  }
+}
+
+img {
+  max-width: 100%; // Prevent images from overflowing their container
+  height: auto;    // Maintain aspect ratio
+  display: block;  // Remove extra space below inline images
+}
+
+
+/* --- Hero Section --- */
+.hero-section {
+  background-color: var(--bg-hero); // Keep solid hero background
+  color: var(--text-hero);
+  padding: 5rem 1rem;
   text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  color: #666;
-  font-size: 0.9em;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; // Ensure hero content is above body background
+  z-index: 1; // Above body pseudo-elements
+  transition: background-color var(--transition-speed) ease;
+
+  .hero-content { // Nesting content styles within the section
+      max-width: 800px; // Limit width of the content area
+  }
+
+  .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; /* Make the photo circular */
+      margin: 0 auto 1.5rem auto; // Center horizontally, add space below
+      border: 5px solid var(--border-photo); /* White border around photo */
+      box-shadow: 0 4px 8px var(--shadow-color); // Subtle shadow
+      transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  }
+
+  h1 {
+      color: var(--text-hero); // Ensure heading is white
+      margin-bottom: 0.5rem;
+      font-size: 3rem; /* Larger font size for the name */
+  }
+
+  h2 { // Tagline styling
+      color: var(--text-hero-muted); /* Slightly off-white for contrast */
+      font-size: 1.5rem;
+      font-weight: 400; /* Lighter font weight */
+      margin-bottom: 1rem;
+  }
+
+   p { // Brief intro text
+      color: var(--text-hero-muted); // Lighter grey text
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px; /* Constrain width for readability */
+      margin-left: auto;
+      margin-right: auto; // Center the paragraph block
+  }
+
+  .hero-buttons {
+      margin-bottom: 2rem; // Space below buttons
+      display: flex;
+      justify-content: center; // Center buttons horizontally
+      gap: 1rem; /* Space between buttons */
+      flex-wrap: wrap; /* Allow buttons to wrap onto the next line on smaller screens */
+  }
+
+  .cta-button { // Common styles for Call To Action buttons
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px; /* Pill shape */
+      font-size: 1rem;
+      font-weight: 600; // Bolder text
+      text-decoration: none;
+      transition: background-color var(--transition-speed) ease, transform 0.2s ease, color var(--transition-speed) ease; // Smooth transitions
+      display: inline-block; // Allow padding and margins
+      border: none; // Remove default border
+      cursor: pointer; // Indicate interactivity
+
+      &.primary { // Specific styles for the primary button
+          background-color: var(--bg-button-primary);
+          color: var(--text-button-primary);
+
+          &:hover {
+              background-color: var(--bg-button-primary-hover);
+              transform: translateY(-2px); // Slight lift effect
+              text-decoration: none; // Keep underline off
+          }
+      }
+
+      &.secondary { // Specific styles for the secondary button
+          background-color: var(--bg-button-secondary);
+          color: var(--text-button-secondary);
+
+          &:hover {
+              background-color: var(--bg-button-secondary-hover); // Darker grey on hover
+              transform: translateY(-2px);
+              text-decoration: none;
+          }
+      }
+  } // End .cta-button
+
+  .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem; // Space between social links
+
+      a { // Styling for individual social links
+          color: var(--text-muted); // Use muted text color
+          font-size: 1rem;
+          text-decoration: none;
+          transition: color var(--transition-speed) ease;
+
+          &:hover {
+              color: var(--text-hero); // Use primary hero text color on hover
+              text-decoration: none;
+          }
+      }
+  } // End .social-links
+} // End .hero-section
+
+
+/* --- Content Sections (About, Projects, Contact) --- */
+.main-content {
+  position: relative; // Ensure main content is above body background
+  z-index: 1; // Above body pseudo-elements
+}
+
+.content-section {
+  padding: 4rem 1rem; // Consistent vertical and horizontal padding
+  max-width: 900px; // Limit content width for readability
+  margin: 0 auto; // Center sections horizontally
+  // Make section backgrounds transparent to show blobs behind
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color var(--transition-speed) ease;
+
+  // Ensure text remains readable - maybe add a subtle text shadow if needed
+  // h2, p, strong, a { text-shadow: 0 0 5px rgba(0, 0, 0, 0.1); } // Example
+
+  h2 { // Section titles
+      text-align: center; /* Center the text */
+      margin-bottom: 2.5rem; // More space below title
+      position: relative; // Needed for absolute positioning of the pseudo-element
+      display: inline-block; /* Allows centering using transform */
+      left: 50%;
+      transform: translateX(-50%); // Precise centering technique
+
+      // Add an underline effect to section titles using a pseudo-element
+      &::after {
+          content: ''; // Required for pseudo-elements
+          display: block;
+          width: 60px; // Width of the underline
+          height: 4px; // Thickness of the underline
+          background-color: var(--underline-color); // Use variable
+          margin: 0.5rem auto 0; /* Center the underline below the text */
+          transition: background-color var(--transition-speed) ease;
+      }
+  }
+
+  // If using transparent background, alt-bg might not be needed
+  // or could apply a different subtle effect
+  &.alt-bg {
+      // background-color: rgba(0, 0, 0, 0.02); // Example: Very subtle overlay
+      // Or maybe add a border instead?
+      // border-top: 1px solid var(--border-color);
+      // border-bottom: 1px solid var(--border-color);
+  }
+} // End .content-section
+
+
+/* --- Project List Specific Styles --- */
+.project-list {
+  display: grid;
+  // Use grid for layout. Creates responsive columns.
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; // Space between grid items
+}
+
+.project-item {
+  background-color: var(--bg-card); // Keep card background solid
+  padding: 1.5rem;
+  border-radius: 8px; // Rounded corners
+  border: 1px solid var(--border-color); // Add subtle border to cards
+  box-shadow: 0 2px 5px var(--shadow-color); // Subtle shadow
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+
+  &:hover {
+      transform: translateY(-5px); // Lift card slightly on hover
+      box-shadow: 0 4px 15px var(--shadow-color-hover); // Increase shadow on hover
+  }
+
+  h3 { // Project titles
+      margin-bottom: 0.5rem;
+      color: var(--text-link); /* Match link color for consistency */
+  }
+
+   p {
+      font-size: 0.95rem; // Slightly smaller text for descriptions
+      margin-bottom: 0.8rem;
+   }
+
+  strong { // "Technologies:" label
+      color: var(--text-secondary); // Use variable
+  }
+
+  .project-links {
+      margin-top: 1rem; // Space above project links
+      display: flex;
+      gap: 1rem; // Space between links (Demo, GitHub)
+
+      a {
+          font-size: 0.9rem;
+          font-weight: 500; // Slightly bolder link text
+      }
+  }
+} // End .project-item
+
+
+/* --- Footer --- */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem; // Space above the footer
+  background-color: var(--bg-footer); // Keep solid footer background
+  color: var(--text-footer); // Use variable
+  font-size: 0.9em; // Smaller font size
+  position: relative; // Ensure footer is above body background
+  z-index: 1; // Above body pseudo-elements
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+
+  p { // Ensure paragraph inside footer uses footer text color
+     color: var(--text-footer);
+     margin-bottom: 0; // Remove bottom margin if it's the only element
+  }
+}
+
+
+/* --- Responsive Adjustments --- */
+
+// Medium screens (tablets, large phones)
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  .hero-section h1 { font-size: 2.5rem; } // Adjust hero title size
+  .hero-section h2 { font-size: 1.3rem; } // Adjust hero subtitle size
+  h2 { font-size: 1.8rem; } // Adjust section title size
+  h3 { font-size: 1.3rem; } // Adjust project title size
+
+  .hero-section {
+      padding: 3rem 1rem; // Reduce padding
+      min-height: 60vh; // Reduce min-height
+  }
+
+  .content-section {
+      padding: 3rem 1rem; // Reduce padding
+  }
+
+   .navbar-container {
+      padding: 0 1rem; // Ensure padding on smaller screens
+  }
+
+  // Optional: Hide text nav links and show a hamburger menu on small screens
+  // .navbar-nav a { display: none; }
+  // .theme-toggle-button { margin-left: auto; } // Push toggle to the right if nav links are hidden
+}
+
+// Small screens (phones)
+@media (max-width: 480px) {
+  .hero-buttons {
+      flex-direction: column; /* Stack buttons vertically */
+      align-items: center; // Center stacked buttons
+  }
+  .cta-button {
+       width: 80%; /* Make buttons take up more width */
+       max-width: 300px; // But not too wide
+       text-align: center;
+  }
+   .project-list {
+      grid-template-columns: 1fr; /* Switch to a single column layout */
+  }
+
+   .navbar-brand a {
+      font-size: 1.2rem; // Slightly smaller brand text
+   }
 }
