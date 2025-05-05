@@ -1,35 +1,78 @@
 html,
+
 body {
-  height: 100%;
+  font-family: sans-serif;
   margin: 0;
+  line-height: 1.6;
+  background-color: #f4f4f4;
 }
 
-body {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+.portfolio-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-  background: linear-gradient(to bottom right, #444444, #009a5b);
-  font-size: 1.5rem;
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+
+  h1 { // Nested h1 styles
+      margin: 0;
+      padding-bottom: 0.5rem;
+  }
+}
+
+nav {
+  ul { // Nested ul styles
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li { // Nested li styles
+          display: inline;
+          margin: 0 10px;
+      }
+  }
+
+  a { // Nested a styles
+      color: #fff;
+      text-decoration: none;
+
+      &:hover { // Nested pseudo-class (:hover) using the parent selector '&'
+          text-decoration: underline;
+      }
+  }
 }
 
 main {
-  color: #fff6d5;
-  font-family: sans-serif;
+  padding: 2rem 1rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+
+  &:last-child { // Nested pseudo-class (:last-child) using the parent selector '&'
+      border-bottom: none;
+  }
+}
+
+h2 { // Remains top-level as it's not nested in the original CSS
+  color: #333;
+}
+
+footer {
   text-align: center;
-}
-
-.logo {
-  height: 20em;
-}
-
-.heart:after {
-  content: "❤️";
-
-  font-size: 1.75em;
-}
-
-h1 + .subtitle {
-  display: block;
-  margin-top: -1em;
+  margin-top: 2rem;
+  padding: 1rem;
+  color: #666;
+  font-size: 0.9em;
 }
