@@ -44,14 +44,14 @@ jobs:
       #- name: Build with Trunk (Project Page)
       #  run: trunk build --release --public-url /<repo-name>/ # Replace <repo-name> with your actual repo name!
 #
-      #- name: Setup Pages
-      #  uses: actions/configure-pages@v5 # Configures GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5 # Configures GitHub Pages
 #
-      #- name: Upload artifact
-      #  uses: actions/upload-pages-artifact@v3 # Uploads the 'dist' folder
-      #  with:
-      #    # Upload the output directory from trunk build
-      #    path: './dist'
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # Uploads the 'dist' folder
+        with:
+          # Upload the output directory from trunk build
+          path: './dist'
 
   deploy:
     needs: build # Depends on the build job completing successfully
