@@ -25,34 +25,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Checks out your repository code
+        uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable # Installs Rust
+        uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
 
       - name: Install Trunk
-        run: cargo install --locked trunk # Installs Trunk
+        run: cargo install --locked trunk
 
-      # --- IMPORTANT: Set the public-url based on your repo name ---
-      # Option 1: Use if repo is <username>.github.io
+      # --- Make sure you uncommented the CORRECT build option below! ---
+      # Option 1 (if repo is <username>.github.io):
       - name: Build with Trunk (User Page)
         run: trunk build --release
 
-      ## Option 2: Use if repo has another name (e.g., my-yew-portfolio). REPLACE <repo-name>
-      #- name: Build with Trunk (Project Page)
-      #  run: trunk build --release --public-url /<repo-name>/ # Replace <repo-name> with your actual repo name!
-#
+      # Option 2 (if repo is something else, e.g., my-yew-portfolio):
+      # - name: Build with Trunk (Project Page)
+      #   run: trunk build --release --public-url /<repo-name>/ # Replace <repo-name>!
+
+      # --- UNCOMMENT THESE LINES ---
       - name: Setup Pages
         uses: actions/configure-pages@v5 # Configures GitHub Pages
-#
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3 # Uploads the 'dist' folder
         with:
           # Upload the output directory from trunk build
           path: './dist'
-
   deploy:
     needs: build # Depends on the build job completing successfully
     runs-on: ubuntu-latest
