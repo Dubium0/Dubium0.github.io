@@ -34,7 +34,8 @@ jobs:
 
       - name: Install Trunk
         run: cargo install --locked trunk
-
+      - name: Install wasm-unkwond-unknown
+        run: rustup target add wasm32-unknown-unknown
       # --- Make sure you uncommented the CORRECT build option below! ---
       # Option 1 (if repo is <username>.github.io):
       - name: Build with Trunk (User Page)
