@@ -1,0 +1,41 @@
+// scss/layout/_sections.scss
+
+.main-content {
+    position: relative;
+    z-index: 1; // Above body pseudo-elements for animated background
+}
+
+.content-section {
+    padding: 4rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0); // Transparent for animated background
+    transition: background-color var(--transition-speed) ease;
+
+    h2 { // Section titles (general)
+        text-align: center;
+        margin-bottom: 2.5rem;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--underline-color);
+            margin: 0.5rem auto 0;
+            transition: background-color var(--transition-speed) ease;
+        }
+    }
+
+    &.alt-bg {
+        background-color: rgba(0, 0, 0, 0.02); // Example subtle overlay
+        // Or perhaps a border for separation if main bg is transparent
+        // border-top: 1px solid var(--border-color);
+        // border-bottom: 1px solid var(--border-color);
+        // For now, let's assume no distinct style if main content-section is transparent
+    }
+}

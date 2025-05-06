@@ -1,0 +1,35 @@
+// scss/components/_buttons.scss
+
+.cta-button {
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition-speed) ease, transform 0.2s ease, color var(--transition-speed) ease;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+
+    &.primary {
+        background-color: var(--bg-button-primary);
+        color: var(--text-button-primary);
+
+        &:hover {
+            background-color: var(--bg-button-primary-hover);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+    }
+
+    &.secondary {
+        background-color: var(--bg-button-secondary);
+        color: var(--text-button-secondary);
+
+        &:hover {
+            background-color: var(--bg-button-secondary-hover);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+    }
+}

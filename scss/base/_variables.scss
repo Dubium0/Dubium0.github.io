@@ -1,0 +1,49 @@
+// scss/base/_variables.scss
+
+/* --- Theme Variables --- */
+:root {
+    // --- Light Mode (Default) ---
+    --bg-primary: #f8f9fa;       // Page background
+    --bg-secondary: #e9ecef;     // Alternate section background (e.g., projects)
+    --bg-card: #ffffff;          // Card background (e.g., project item)
+    --bg-hero: #343a40;         // Hero section background
+    --bg-footer: #343a40;        // Footer background
+    --bg-button-primary: #007bff;
+    --bg-button-primary-hover: #0056b3;
+    --bg-button-secondary: #6c757d;
+    --bg-button-secondary-hover: #5a6268;
+    --bg-toggle-button: #f1f3f5;
+    --bg-toggle-button-hover: #dee2e6;
+
+    --text-primary: #212529;     // Main text color
+    --text-secondary: #495057;   // Slightly lighter text (e.g., project tech label)
+    --text-muted: #6c757d;       // Muted text
+    --text-hero: #ffffff;        // Text on hero background
+    --text-hero-muted: #e9ecef;  // Muted text on hero (e.g., tagline)
+    --text-footer: #adb5bd;       // Text on footer background
+    --text-link: #007bff;
+    --text-link-hover: #0056b3;
+    --text-button-primary: #ffffff;
+    --text-button-secondary: #ffffff;
+    --text-toggle-button: #495057;
+
+    --border-color: #dee2e6;     // Borders
+    --border-photo: #ffffff;     // Profile photo border
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --shadow-color-hover: rgba(0, 0, 0, 0.1);
+    --underline-color: var(--text-link);
+
+    --navbar-height: 60px;
+    --navbar-bg: rgba(255, 255, 255, 0.85);
+    --navbar-border: var(--border-color);
+    --navbar-shadow: var(--shadow-color);
+    --navbar-text: var(--text-primary);
+    --navbar-link-hover-bg: var(--bg-secondary);
+
+    // -- Animated Background Blob Colors (Light Mode) --
+    --blob-color-1: rgba(100, 150, 255, 0.3);
+    --blob-color-2: rgba(255, 150, 200, 0.25);
+    --blob-color-3: rgba(150, 255, 180, 0.2);
+
+    --transition-speed: 0.3s;
+}

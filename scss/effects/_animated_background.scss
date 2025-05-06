@@ -1,0 +1,48 @@
+// scss/effects/_animated_background.scss
+
+// Body padding for fixed navbar is also a layout concern,
+// but closely tied to the animated background's full-page nature.
+body {
+    padding-top: var(--navbar-height); // Account for fixed navbar
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px);
+    opacity: 0.8;
+    will-change: transform, background-position;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--blob-color-1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 50%, var(--blob-color-2) 0%, transparent 35%),
+        radial-gradient(circle at 50% 80%, var(--blob-color-3) 0%, transparent 45%);
+    background-size: 150% 150%;
+    animation: moveBlobs 30s ease-in-out infinite alternate;
+}
+
+// Optional: Add a second pseudo-element for more complex layering/movement
+// body::after {
+//     background-image: radial-gradient(circle at 10% 90%, var(--blob-color-3) 0%, transparent 50%);
+//     background-size: 100% 100%;
+//     animation: moveBlobsSlower 45s linear infinite alternate;
+// }
+
+@keyframes moveBlobs {
+    0% { background-position: 0% 0%; transform: scale(1) translate(0, 0); }
+    100% { background-position: 100% 100%; transform: scale(1.05) translate(5px, -5px); }
+}
+
+// @keyframes moveBlobsSlower {
+//     0% { background-position: 100% 0%; }
+//     100% { background-position: 0% 100%; }
+// }

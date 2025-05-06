@@ -1,0 +1,45 @@
+// scss/themes/_dark_mode.scss
+
+body.dark-mode {
+    // --- Dark Mode Overrides ---
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-card: #252525;
+    --bg-hero: #0f0f0f;
+    --bg-footer: #0f0f0f;
+    --bg-button-primary: #0d6efd;
+    --bg-button-primary-hover: #3b82f6;
+    --bg-button-secondary: #5c636a;
+    --bg-button-secondary-hover: #7d8389;
+    --bg-toggle-button: #343a40;
+    --bg-toggle-button-hover: #495057;
+
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --text-muted: #868e96;
+    --text-hero: #f8f9fa;
+    --text-hero-muted: #ced4da;
+    --text-footer: #adb5bd;
+    --text-link: #60a5fa;
+    --text-link-hover: #93c5fd;
+    --text-button-primary: #ffffff;
+    --text-button-secondary: #ffffff;
+    --text-toggle-button: #e9ecef;
+
+    --border-color: #3a3a3a;
+    --border-photo: #495057;
+    --shadow-color: rgba(255, 255, 255, 0.03);
+    --shadow-color-hover: rgba(255, 255, 255, 0.07);
+    --underline-color: var(--text-link);
+
+    --navbar-bg: rgba(25, 25, 25, 0.85);
+    --navbar-border: var(--border-color);
+    --navbar-shadow: var(--shadow-color);
+    --navbar-text: var(--text-primary);
+    --navbar-link-hover-bg: var(--bg-secondary);
+
+    // -- Animated Background Blob Colors (Dark Mode) --
+    --blob-color-1: rgba(80, 100, 200, 0.35);
+    --blob-color-2: rgba(180, 80, 150, 0.3);
+    --blob-color-3: rgba(80, 180, 100, 0.25);
+}

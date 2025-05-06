@@ -1,0 +1,81 @@
+// scss/components/_hero.scss
+
+.hero-section {
+    background-color: var(--bg-hero);
+    color: var(--text-hero);
+    padding: 5rem 1rem;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1; // Above body pseudo-elements for animated background
+    transition: background-color var(--transition-speed) ease;
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem auto;
+        border: 5px solid var(--border-photo);
+        box-shadow: 0 4px 8px var(--shadow-color);
+        transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    }
+
+    h1 { // Specific to hero h1
+        color: var(--text-hero); // Already set by .hero-section color, but explicit
+        margin-bottom: 0.5rem;
+        font-size: 3rem;
+    }
+
+    h2 { // Specific to hero h2 (tagline)
+        color: var(--text-hero-muted);
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+     p { // Specific to hero p (intro)
+        color: var(--text-hero-muted);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    // CTA buttons are used here, but their base style is in _buttons.scss
+    // .cta-button { ... }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+
+        a {
+            color: var(--text-muted); // Muted color for social links in hero
+            font-size: 1rem;
+            // text-decoration: none; // Inherited
+            transition: color var(--transition-speed) ease;
+
+            &:hover {
+                color: var(--text-hero); // Brighten on hover
+                // text-decoration: none; // Inherited
+            }
+        }
+    }
+}

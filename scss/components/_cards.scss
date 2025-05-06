@@ -1,0 +1,46 @@
+// scss/components/_cards.scss (For .project-item)
+
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-item {
+    background-color: var(--bg-card); // Solid background for cards
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px var(--shadow-color-hover);
+    }
+
+    h3 { // Project titles within cards
+        margin-bottom: 0.5rem;
+        color: var(--text-link); // Use link color for card titles
+    }
+
+     p { // Text within cards
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+     }
+
+    strong { // "Technologies:" label within cards
+        color: var(--text-secondary);
+    }
+
+    .project-links {
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+
+        a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+// scss/layout/_footer.scss
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    background-color: var(--bg-footer); // Solid background for footer
+    color: var(--text-footer);
+    font-size: 0.9em;
+    position: relative;
+    z-index: 1; // Above body pseudo-elements for animated background
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+
+    p {
+       color: var(--text-footer); // Ensure p tags inherit footer color
+       margin-bottom: 0;
+    }
+}
