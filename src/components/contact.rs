@@ -6,7 +6,7 @@ use yew::prelude::*;
 pub fn contact() -> Html { // Make the function public (`pub fn`)
      let email_address = "mailto:emre.aslan.24628@ozu.edu.tr"; // Replace
      // Make sure the CV file exists in your project root or update the path
-     let cv_url = "cv.pdf"; // Example: Assuming cv.pdf is in the root
+     let cv_url = "images/YunusEmreAslanCV.pdf"; // Example: Assuming cv.pdf is in the root
 
     html! {
         <section id="contact" class="content-section">

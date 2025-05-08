@@ -1,7 +1,8 @@
 // scss/components/_hero.scss
 
 .hero-section {
-    background-color: var(--bg-hero); 
+    // Keep existing styles like padding, min-height, display: flex, etc.
+    background-color: var(--bg-hero); // Fallback background color
     color: var(--text-hero);
     padding: 5rem 1rem;
     text-align: center;
@@ -10,24 +11,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative; 
-    z-index: 1; 
-    overflow: hidden; 
+    position: relative; // Crucial for positioning background/overlay
+    z-index: 1; // Keep above body background
+    overflow: hidden; // Prevent potential overflow from background elements
     transition: background-color var(--transition-speed) ease;
 }
 
-// Container for the background media (GIFs)
+// Container for the background media (GIF)
 .hero-background-media {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; 
+    z-index: 0; // Behind .hero-content
 
-    // Styles for BOTH background images
     .hero-background-gif {
-        position: absolute; // Position images on top of each other
+        position: absolute;
         top: 0;
         left: 0;
         display: block; 
@@ -35,27 +35,27 @@
         height: 100%;
         object-fit: cover; 
         object-position: center; 
-        // --- Transition for opacity ---
-        transition: opacity 0.75s ease-in-out; // Match FADE_DURATION_MS (750ms)
+        transition: opacity 0.75s ease-in-out; 
+        // Optional: Slightly reduce brightness of the GIF itself
+        // filter: brightness(0.8); 
     }
 
-    // Initially, the 'active' GIF is visible, 'next' is hidden
     .active-gif {
         opacity: 1;
-        z-index: 2; // Ensure active is initially on top
+        z-index: 2; 
     }
     .next-gif {
         opacity: 0;
-        z-index: 1; // Next is behind initially
+        z-index: 1; 
     }
 
     // When the parent container has the 'is-fading' class:
     &.is-fading {
         .active-gif {
-            opacity: 0; // Fade out the active GIF
+            opacity: 0; 
         }
         .next-gif {
-            opacity: 1; // Fade in the next GIF
+            opacity: 1; 
         }
     }
 
@@ -66,7 +66,11 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5)); 
+        // --- Increased Overlay Opacity ---
+        // Make the gradient darker or use a solid color with higher opacity
+        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.65)); // Darker gradient
+        // Or try a solid overlay:
+        // background-color: rgba(0, 0, 0, 0.5); // Adjust opacity (0.0 to 1.0)
         z-index: 3; // Above both GIFs, below hero-content
     }
 }
@@ -77,8 +81,11 @@
     max-width: 800px;
     position: relative; 
     z-index: 4; // Position above background media and overlay
+    
+    // --- Add/Strengthen Text Shadow ---
     h1, h2, p {
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        // Adjust shadow values for desired effect (offset-x, offset-y, blur-radius, color)
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); // Stronger shadow
     }
 }
 
@@ -97,20 +104,20 @@
 }
 
 .hero-section h1 {
-    color: var(--text-hero);
+    color: var(--text-hero); // Ensure color is still white
     margin-bottom: 0.5rem;
     font-size: 3rem;
 }
 
 .hero-section h2 {
-    color: var(--text-hero-muted);
+    color: var(--text-hero-muted); // Ensure color is still light
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
 }
 
 .hero-section p {
-    color: var(--text-hero-muted);
+    color: var(--text-hero-muted); // Ensure color is still light
     font-size: 1.1rem;
     margin-bottom: 2rem;
     max-width: 600px;

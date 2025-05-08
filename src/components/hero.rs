@@ -10,7 +10,7 @@ pub fn hero() -> Html {
     // Placeholder values - replace with your actual info
     let your_name = "Yunus Emre Aslan";
     let your_tagline = "Software Engineer";
-    let your_brief_intro = "Yunus Emre ASLAN is a senior Computer Science student at Ozyegin University in Istanbul, Turkey. He is focusing on specializing in Game Development and Graphics Programming. His preferred programming languages are C++ and C#, and his favorite game engine is Unity. Additionally, he is addicted to gaming.";
+    let your_brief_intro = "Hi, I'm Yunus Emre ASLAN, a senior Computer Science student at Ozyegin University here in Istanbul. I'm currently focusing on Game Development (specifically game engines) and Graphics Programming. My go-to programming languages are C++ and C#, and I love using the Unity game engine to bring my ideas to life. It's probably no surprise that I'm a huge gaming enthusiast!";
     let profile_image_path = "images/profile_image.png";
     let background_gifs: Rc<Vec<&'static str>> = Rc::new(vec![
         "images/battleship.gif",
@@ -38,14 +38,14 @@ pub fn hero() -> Html {
              <div class={classes!("hero-background-media", (*is_fading).then_some("is-fading"))}>
                 // Image for the currently active GIF
                 <img
-                    src={(*active_gif)} // Use active_gif handle
+                    src={*active_gif} // Use active_gif handle
                     alt="Animated background (active)"
                     class="hero-background-gif active-gif"
                     key={format!("{}-active", *active_gif)}
                 />
                 // Image for the next GIF (fades in)
                  <img
-                    src={(*next_gif)} // Use next_gif handle
+                    src={*next_gif} // Use next_gif handle
                     alt="Animated background (next)"
                     class="hero-background-gif next-gif"
                     key={format!("{}-next", *next_gif)}
