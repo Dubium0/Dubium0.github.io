@@ -1,0 +1,131 @@
+// scss/components/_skills.scss
+
+.skills-section {
+    // Uses .content-section base styles for padding and max-width
+
+    h2 { // Main "Skills & Interests" title
+        margin-bottom: 2.5rem; // More space before the grid
+    }
+}
+
+.skills-grid {
+    display: grid;
+    // Ensure 4 columns on larger screens by default.
+    // Media queries below will adjust for smaller screens.
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem; // Gap between skill category columns/rows
+    margin-bottom: 3rem; // Space before the interests section
+}
+
+.skill-category {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px var(--shadow-color); // Softer shadow for skill cards
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+
+
+    h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--text-link); // Use link color for category titles
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border-color);
+        transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    }
+
+    ul {
+        list-style: none; // Remove default bullet points
+        padding-left: 0;
+
+        li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1rem; // Indent skill items
+            position: relative;
+            transition: color var(--transition-speed) ease;
+
+            // Custom bullet point
+            &::before {
+                content: '▹'; // Or '•', '–', etc.
+                position: absolute;
+                left: 0;
+                color: var(--text-link); // Match category title color
+                font-weight: bold;
+                transition: color var(--transition-speed) ease;
+            }
+        }
+    }
+}
+
+.interests-section {
+    margin-top: 3rem; // Space above interests
+    padding-top: 2rem; // Space within the interests section
+    border-top: 1px solid var(--border-color); // Separator line
+
+    h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: center;
+        margin-bottom: 1.5rem;
+        transition: color var(--transition-speed) ease;
+    }
+
+    .interests-list {
+        list-style: none;
+        padding-left: 0;
+        text-align: center; // Center list items
+
+        li {
+            display: inline-block; // Display items inline
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 15px; // Pill shape
+            margin: 0.3rem;
+            font-size: 0.9rem;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+
+            &:hover {
+                background-color: var(--text-link);
+                color: var(--text-button-primary); // White text on hover
+            }
+        }
+    }
+
+    .interests-paragraph { // Alternative styling for interests
+        text-align: center;
+        color: var(--text-secondary);
+        line-height: 1.8;
+    }
+}
+
+// Responsive adjustments for skills grid
+@media (max-width: 992px) { // Medium screens (e.g., tablets)
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr); // 2 columns
+    }
+}
+
+@media (max-width: 576px) { // Small screens (e.g., phones)
+    .skills-grid {
+        grid-template-columns: 1fr; // 1 column
+    }
+    .skill-category h3 {
+        font-size: 1.1rem;
+    }
+    .skill-category ul li {
+        font-size: 0.9rem;
+    }
+    .interests-section h3 {
+        font-size: 1.2rem;
+    }
+    .interests-list li {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.7rem;
+    }
+}

@@ -1,0 +1,113 @@
+// scss/components/_experiences.scss
+
+// Styles for the overall section wrapper if needed
+.experiences-section-categorized {
+    // Inherits from .content-section
+}
+
+// Wrapper for each category (e.g., Work Experience)
+.experience-category-group {
+    margin-top: 2.5rem; // Add space above each category group
+
+    &:first-of-type {
+        margin-top: 0; // Remove top margin for the very first category
+    }
+}
+
+// Title for each category (e.g., "Work Experience")
+.experience-category-title {
+    font-size: 1.5rem; // Make category titles distinct
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center; // Center category titles
+    position: relative;
+
+    // Optional: Add a separator line above category titles (except the first)
+    .experience-category-group + .experience-category-group & { // Select title only if preceded by another group
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+}
+
+// The list containing individual items
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; // Space between experience items
+}
+
+// Styling for an individual experience item card
+.experience-item {
+    background-color: var(--bg-card);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px var(--shadow-color-hover);
+    }
+}
+
+.experience-header {
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.75rem;
+
+    .experience-title {
+        color: var(--text-link);
+        margin-bottom: 0.25rem;
+        font-size: 1.35rem;
+    }
+
+    .experience-company {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-bottom: 0.25rem;
+
+        a {
+            color: var(--text-secondary);
+            text-decoration: underline;
+            text-decoration-color: var(--border-color);
+            transition: color var(--transition-speed) ease, text-decoration-color var(--transition-speed) ease;
+
+            &:hover {
+                color: var(--text-link);
+                text-decoration-color: var(--text-link);
+            }
+        }
+    }
+
+    .experience-dates {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+}
+
+.experience-description {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+
+    li {
+        margin-bottom: 0.5rem;
+        line-height: 1.7;
+        color: var(--text-primary);
+    }
+}
+
+.experience-technologies {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+
+    strong {
+        color: var(--text-primary);
+    }
+}

@@ -6,7 +6,7 @@ use yew::prelude::*;
 #[function_component(Footer)]
 pub fn footer() -> Html { // No props needed anymore
     let current_year = 2025;
-    let your_name = "Your Name"; // Replace
+    let your_name = "Yunus Emre Aslan"; // Replace
 
     html! {
         <footer class="site-footer">

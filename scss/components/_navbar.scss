@@ -19,14 +19,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1200px; // Or match your .content-section width + padding
     margin: 0 auto;
     padding: 0 1rem;
     height: 100%;
 }
 
 .navbar-brand a {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--navbar-text);
     text-decoration: none;
@@ -40,22 +40,84 @@
 .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.5rem; // Base gap between all items
 
-    a { // Styles for potential future nav links
+    // Styles for text-based navigation links
+    .nav-text-link {
         color: var(--navbar-text);
         text-decoration: none;
         padding: 0.5rem 0.8rem;
         border-radius: 4px;
+        font-size: 0.95rem;
+        font-weight: 500;
         transition: background-color 0.2s ease, color var(--transition-speed) ease;
+
         &:hover {
             background-color: var(--navbar-link-hover-bg);
+            color: var(--text-link); // Use link color on hover background
+            text-decoration: none;
+        }
+        // Add active state styling later if needed (requires JS/Yew state)
+    }
+
+    // Optional separator between nav links and action buttons/icons
+    .nav-separator {
+        height: 20px; // Adjust height as needed
+        width: 1px;
+        background-color: var(--border-color);
+        margin-left: 0.75rem; // Space before separator
+        margin-right: 0.75rem; // Space after separator
+        transition: background-color var(--transition-speed) ease;
+    }
+
+
+    // Styles for the CV download button/link
+    .nav-button-link {
+        color: var(--text-button-primary);
+        background-color: var(--bg-button-secondary);
+        padding: 0.4rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+        white-space: nowrap; // Prevent wrapping
+
+        &:hover {
+            background-color: var(--bg-button-secondary-hover);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+    }
+
+
+    // Styles specifically for the icon links (GitHub, LinkedIn, Mail)
+    .nav-icon-link {
+        color: var(--navbar-text);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        border-radius: 50%;
+        transition: color var(--transition-speed) ease, background-color 0.2s ease, transform 0.2s ease;
+
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+            stroke: currentColor;
+        }
+
+        &:hover {
+            color: var(--text-link);
+            background-color: var(--navbar-link-hover-bg);
+            transform: scale(1.1);
             text-decoration: none;
         }
     }
 }
 
-// Theme toggle button is also part of navbar component visually
+// Theme toggle button styles
 .theme-toggle-button {
     background-color: transparent;
     color: var(--navbar-text);
@@ -78,3 +140,22 @@
         background-color: var(--navbar-link-hover-bg);
     }
 }
+
+// --- Responsive Adjustments for Navbar ---
+@media (max-width: 992px) { // Example breakpoint for hiding text links
+    .navbar-nav {
+        gap: 0.3rem; // Reduce gap slightly
+
+        .nav-text-link {
+            display: none; // Hide text links on smaller screens
+        }
+        .nav-separator {
+            display: none; // Hide separator as well
+        }
+        .nav-button-link { // Maybe make CV button smaller or icon-only
+           padding: 0.3rem 0.6rem; font-size: 0.8rem;
+        }
+    }
+    // Consider adding a hamburger menu button here to toggle links if needed
+}
+

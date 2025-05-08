@@ -1,28 +1,31 @@
-// 1. Variables (defines CSS custom properties)
+// scss/index.scss
+
+// 1. Variables
 @import 'base/variables';
 
-// 2. Themes (defines overrides for variables, e.g., dark mode)
+// 2. Themes
 @import 'themes/dark_mode';
 
-// 3. Base Styles (reset, global typography, body defaults)
+// 3. Base Styles
 @import 'base/reset';
 @import 'base/typography';
 
-// 4. Effects (full-page effects like animated background)
+// 4. Effects
 @import 'effects/animated_background';
+// @import 'effects/webgl_background'; // Assuming this is still commented out
 
-// 5. Layout (major page structure: header/navbar, footer, sections)
-@import 'layout/sections'; // General content section styling
+// 5. Layout
+@import 'layout/sections';
 @import 'layout/footer';
-// Navbar is a component but also part of layout, imported under components
 
-// 6. Components (buttons, cards, specific sections like hero)
-@import 'components/navbar';   // Navbar styles (includes theme toggle button)
-@import 'components/buttons';  // CTA button styles
+// 6. Components
+@import 'components/navbar';
+@import 'components/buttons';
 @import 'components/hero';
-@import 'components/cards';    // Project item cards
-
-// 7. Responsive Styles (media queries)
+@import 'components/cards';    // For .project-item
+@import 'components/experiences'; // <-- Add this import
+@import 'components/education';
+@import 'components/skills';
+@import 'components/spotify_embed';
+// 7. Responsive Styles
 @import 'layout/responsive';
-
-// Note: Loader styles are kept inline in index.html to prevent FOUC.

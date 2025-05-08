@@ -1,0 +1,98 @@
+// scss/components/_education.scss
+
+.education-section {
+    // Uses .content-section base styles for padding and max-width
+}
+
+.education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; // Space between education items
+}
+
+.education-item {
+    display: flex; // For aligning logo and content
+    gap: 1.5rem; // Space between logo and content
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px var(--shadow-color-hover);
+    }
+}
+
+.education-logo {
+    width: 60px; // Adjust size as needed
+    height: 60px;
+    object-fit: contain; // Use 'contain' to ensure logo isn't cropped
+    border-radius: 4px; // Slight rounding for the logo image
+    flex-shrink: 0; // Prevent logo from shrinking if content is long
+    align-self: flex-start; // Align logo to the top of the flex container
+    background-color: #a30050; // Optional: if logos have transparent backgrounds and need contrast
+    // padding: 0.25rem; // Optional padding around logo
+    // border: 1px solid var(--border-color); // Optional border
+}
+
+.education-content {
+    flex-grow: 1; // Allow content to take remaining space
+}
+
+.education-header {
+    margin-bottom: 0.75rem;
+
+    .education-institution {
+        color: var(--text-link);
+        margin-bottom: 0.15rem;
+        font-size: 1.25rem; // Slightly smaller than experience title
+        font-weight: 600;
+
+        a {
+            color: inherit; // Inherit color from h3
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .education-degree {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-bottom: 0.15rem;
+    }
+
+    .education-dates {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+}
+
+.education-details {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem; // Less margin if no technologies follow
+
+    li {
+        margin-bottom: 0.4rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+    }
+}
+
+// Responsive adjustments for education items (optional)
+@media (max-width: 576px) { // Small screens
+    .education-item {
+        flex-direction: column; // Stack logo and content vertically
+        align-items: flex-start; // Align items to the start
+        gap: 1rem;
+    }
+
+
+}

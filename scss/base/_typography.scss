@@ -1,27 +1,36 @@
 // scss/base/_typography.scss
 
+html {
+    scroll-behavior: smooth;
+    font-size: 18px; // Increase base font size slightly (browser default is usually 16px)
+    // Alternatively, use percentages: font-size: 106.25%; // (17/16 * 100)
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    line-height: 1.6;
+    line-height: 1.6; // Unitless line-height scales well with font size
     color: var(--text-primary);
-    background-color: var(--bg-primary); // Base background color
-    position: relative; // Needed for pseudo-element positioning
-    overflow-x: hidden; // Prevent horizontal scroll potentially caused by blobs
+    background-color: var(--bg-primary);
+    position: relative;
+    overflow-x: hidden;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    // Font size will be inherited from html element
 }
 
 h1, h2, h3 {
     line-height: 1.2;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.75em; // Use em for vertical spacing relative to font size
     color: var(--text-primary);
     transition: color var(--transition-speed) ease;
 }
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+
+// Adjust heading sizes slightly if needed, using rem units to scale with base font size
+h1 { font-size: 2.4rem; } // Was 2.5rem, slightly smaller relative multiplier
+h2 { font-size: 1.9rem; } // Was 2rem
+h3 { font-size: 1.4rem; } // Was 1.5rem
 
 p {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; // rem scales with base font size
     transition: color var(--transition-speed) ease;
 }
 
@@ -35,3 +44,17 @@ a {
         text-decoration: underline;
     }
 }
+
+// Utility class for centered text
+.centered-text {
+    text-align: center;
+}
+
+// Add some extra margin below centered text if needed, especially if followed by non-centered text
+.centered-text + p:not(.centered-text) {
+    margin-top: 1.5rem; // Add space before the main bio starts
+}
+
+// Note: Font sizes defined in px within specific components (like tags, navbar links)
+// might need slight adjustments if they now look too small or too large relative
+// to the main text. Review those in their respective partials (_cards.scss, _navbar.scss, etc.)

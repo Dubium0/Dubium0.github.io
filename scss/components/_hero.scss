@@ -1,7 +1,7 @@
 // scss/components/_hero.scss
 
 .hero-section {
-    background-color: var(--bg-hero);
+    background-color: var(--bg-hero); 
     color: var(--text-hero);
     padding: 5rem 1rem;
     text-align: center;
@@ -10,72 +10,119 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 1; // Above body pseudo-elements for animated background
+    position: relative; 
+    z-index: 1; 
+    overflow: hidden; 
     transition: background-color var(--transition-speed) ease;
+}
 
-    .hero-content {
-        max-width: 800px;
+// Container for the background media (GIFs)
+.hero-background-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; 
+
+    // Styles for BOTH background images
+    .hero-background-gif {
+        position: absolute; // Position images on top of each other
+        top: 0;
+        left: 0;
+        display: block; 
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        object-position: center; 
+        // --- Transition for opacity ---
+        transition: opacity 0.75s ease-in-out; // Match FADE_DURATION_MS (750ms)
     }
 
-    .profile-photo {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin: 0 auto 1.5rem auto;
-        border: 5px solid var(--border-photo);
-        box-shadow: 0 4px 8px var(--shadow-color);
-        transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    // Initially, the 'active' GIF is visible, 'next' is hidden
+    .active-gif {
+        opacity: 1;
+        z-index: 2; // Ensure active is initially on top
+    }
+    .next-gif {
+        opacity: 0;
+        z-index: 1; // Next is behind initially
     }
 
-    h1 { // Specific to hero h1
-        color: var(--text-hero); // Already set by .hero-section color, but explicit
-        margin-bottom: 0.5rem;
-        font-size: 3rem;
-    }
-
-    h2 { // Specific to hero h2 (tagline)
-        color: var(--text-hero-muted);
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
-    }
-
-     p { // Specific to hero p (intro)
-        color: var(--text-hero-muted);
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-buttons {
-        margin-bottom: 2rem;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    // CTA buttons are used here, but their base style is in _buttons.scss
-    // .cta-button { ... }
-
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-
-        a {
-            color: var(--text-muted); // Muted color for social links in hero
-            font-size: 1rem;
-            // text-decoration: none; // Inherited
-            transition: color var(--transition-speed) ease;
-
-            &:hover {
-                color: var(--text-hero); // Brighten on hover
-                // text-decoration: none; // Inherited
-            }
+    // When the parent container has the 'is-fading' class:
+    &.is-fading {
+        .active-gif {
+            opacity: 0; // Fade out the active GIF
+        }
+        .next-gif {
+            opacity: 1; // Fade in the next GIF
         }
     }
+
+    // Overlay for text readability
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5)); 
+        z-index: 3; // Above both GIFs, below hero-content
+    }
 }
+
+
+// Foreground content container
+.hero-content {
+    max-width: 800px;
+    position: relative; 
+    z-index: 4; // Position above background media and overlay
+    h1, h2, p {
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem auto;
+    border: 5px solid var(--border-photo);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    background-color: var(--bg-secondary);
+}
+
+.hero-section h1 {
+    color: var(--text-hero);
+    margin-bottom: 0.5rem;
+    font-size: 3rem;
+}
+
+.hero-section h2 {
+    color: var(--text-hero-muted);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    color: var(--text-hero-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    margin-bottom: 0; 
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+

@@ -7,9 +7,13 @@ pub fn about() -> Html { // Make the function public (`pub fn`)
     html! {
         <section id="about" class="content-section">
             <h2>{ "About Me" }</h2>
-            <p>{ "Hello! I'm a dedicated developer with a strong focus on performance and safety, which naturally led me to Rust and WebAssembly." }</p>
-            <p>{ "Here, you can talk about your journey, your key skills (e.g., specific Rust crates, frontend frameworks, backend experience), your approach to development, and perhaps a bit about your interests outside of coding." }</p>
-            <p>{ "My goal is to build efficient, maintainable, and user-friendly applications." }</p>
+            <p class="centered-text">{ "Born in Samsun, Turkey" }</p>
+            <p class="centered-text">{ "Lives & studying in Istanbul, Turkey" }</p>
+            <p>{ "  I'm a senior computer science student who enjoys creating visually impressive software such as games, and renderers. 
+                    I'm trying to learn more about computer graphics, software development, and modern game engines such as Unity and Unreal Engine 5. 
+                    For now, my favorite programming language is C++, and my favorite game engine is Unity. 
+                    I'm open to everything interesting about game development and graphics programming so don't hesitate to contact me if you have things to talk about. " }</p>
+          
             // Add more paragraphs as needed
         </section>
     }

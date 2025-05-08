@@ -1,0 +1,127 @@
+// scss/components/_spotify_embed.scss
+
+// Wrapper for the entire widget (trigger + panel)
+.spotify-widget-wrapper {
+    position: fixed;
+    top: 15%; 
+    right: 0; 
+    transform: translateY(-50%); // Center wrapper vertically
+    z-index: 900; 
+    cursor: pointer; 
+    // Set initial width/height based on the trigger to define hover area
+    width: 40px; // Approx trigger width including padding
+    height: 50px; // Approx trigger height including padding
+    // Add transition for width change on hover
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+// Trigger button (initially visible at the edge)
+.spotify-trigger {
+    position: absolute; 
+    top: 0;
+    right: 0; 
+    transform: translateY(-50%); 
+    background-color: var(--bg-card); 
+    color: var(--text-secondary); 
+    padding: 0.8rem 0.5rem; // Reverted padding
+    border: 1px solid var(--border-color);
+    border-right: none; 
+    border-radius: 8px 0 0 8px; 
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    // align-items: flex-start; // Reverted
+    // justify-content: flex-start; // Reverted
+    align-items: center; // Center icon vertically
+    justify-content: center; // Center icon horizontally
+    min-height: 50px; 
+    box-sizing: border-box; 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color var(--transition-speed) ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    z-index: 2; 
+    
+    .spotify-trigger-icon {
+        display: block;
+        width: 24px;  
+        height: auto; 
+        max-height: 24px; 
+        margin: 0; 
+    }
+}
+
+// Slide-out panel containing the player
+.spotify-slide-out {
+    position: absolute; 
+    top: 100%; 
+    // Position its *left* edge relative to the wrapper's right edge initially
+    left: 100%; 
+    transform: translateY(-50%); // Only vertical centering initially
+    width: 350px; 
+    max-width: 80vw; 
+    background-color: var(--bg-card); 
+    border: 1px solid var(--border-color);
+    // border-right: none; // Keep border on all sides now maybe? Or adjust radius
+    border-radius: 12px 0 0 12px; 
+    box-shadow: -3px 0px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; 
+    pointer-events: none; 
+    opacity: 0; 
+    z-index: 1; 
+}
+
+// When the wrapper is hovered:
+.spotify-widget-wrapper:hover {
+    // Expand wrapper width to cover panel area + trigger for hover persistence
+    width: calc(300px + 40px); // Panel width + trigger width (adjust if trigger width changes)
+    // Ensure right edge stays fixed
+    right: 0; 
+    // We don't need to transform the wrapper itself
+
+    // Move the trigger left by the width of the panel
+    .spotify-trigger {
+        // Trigger moves left relative to the wrapper's right edge
+        transform: translateX(-350px) translateY(-50%); // Adjust -300px if panel width changes
+    }
+    // Move the panel into view
+    .spotify-slide-out {
+        // Panel moves left relative to the wrapper's right edge
+        transform: translateX(-350px) translateY(-50%); // Move panel left by its width
+        pointer-events: auto; 
+        opacity: 1; 
+    }
+}
+
+
+.spotify-player-container {
+    line-height: 0; 
+    padding: 5px; 
+
+    iframe {
+        display: block; 
+        border-radius: 8px; 
+    }
+}
+
+// Adjustments for smaller screens if needed
+@media (max-width: 576px) {
+    .spotify-slide-out {
+        width: 250px; 
+    }
+    .spotify-widget-wrapper:hover {
+         width: calc(250px + 35px); // Adjust width for smaller panel + approx trigger
+    }
+    .spotify-widget-wrapper:hover .spotify-trigger {
+        transform: translateX(-250px) translateY(-50%);
+    }
+     .spotify-widget-wrapper:hover .spotify-slide-out {
+         transform: translateX(-250px) translateY(-50%);
+     }
+    .spotify-trigger {
+         padding: 0.8rem 0.5rem; // Reverted padding
+         min-height: 40px; // Adjust min-height
+         .spotify-trigger-icon { width: 20px; max-height: 20px; }
+    }
+     .spotify-widget-wrapper { // Adjust wrapper size on mobile
+        width: 35px; 
+        height: 40px; 
+    }
+}
+

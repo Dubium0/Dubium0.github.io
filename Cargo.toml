@@ -1,30 +1,41 @@
+# Cargo.toml
+
 [package]
-name = "web-portfolio"
+name = "my-yew-portfolio" # Or your actual package name
 version = "0.1.0"
 edition = "2021"
-description = "Template for starting a Yew project using Trunk"
-readme = "README.md"
-repository = "https://github.com/yewstack/yew-trunk-minimal-template"
-license = "MIT OR Apache-2.0"
-keywords = ["yew", "trunk"]
-categories = ["gui", "wasm", "web-programming"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-yew = { version="0.21", features=["csr"] }
+yew = { version = "0.21" }
+yew-hooks = "0.3"
+gloo-storage = "0.3"
+gloo-timers = { version = "0.3", features = ["futures"] }
+gloo-utils = "0.2"
+gloo-events = "0.2"
 wasm-bindgen = "0.2"
-# Add web-sys with specific features needed
+wasm-bindgen-futures = "0.4" # For async operations in WASM
+
+# web-sys - Keep basic features, wgpu might need some
 web-sys = { version = "0.3", features = [
-    'Storage',
     'Window',
     'Document',
     'Element',
     'HtmlElement',
-    'DomTokenList',
-    'MediaQueryList',        # To detect OS preference
-    'MediaQueryListEvent',   # To listen for OS preference changes
+    'Storage',          # Needed for theme persistence (gloo-storage)
+    'MediaQueryList',   # Needed for theme OS preference (use_theme)
+    'MediaQueryListEvent',# Needed for theme OS preference (use_theme)
+    'DomTokenList',     # Needed for theme class manipulation (use_theme)
+    'MouseEvent',
+    'Performance',
+    'console',
+
 ]}
-gloo-storage = "0.3" # Simplified localStorage access
-gloo-events = "0.2"  # For listening to media query changes
-gloo-timers = { version = "0.3", features = ["futures"] } # Add this line
-yew-hooks = "0.3"
+rand = "0.8"
+# Logging
+log = "0.4"
+wasm-logger = "0.2"
+
+
+[profile.release]
+opt-level = "s"
+lto = true
