@@ -41,16 +41,17 @@ pub struct Project {
 pub fn projects() -> Html {
     // --- Define your project data here ---
     let all_projects: Vec<Project> = vec![
-      
-        Project {
-            title: "Marching Cubes".to_string(),
-            description: "This project is about rendering a procedurally generated cave through a 3D noise with marching cube algorithm.".to_string(),
-            technologies: vec!["C++".to_string(), "OpenGL".to_string(), "GLSL".to_string(),"CMake".to_string(),"Visual Studio".to_string(),"GLFW".to_string(),],
+        
+          Project {
+            title: "Portfolio Website".to_string(),
+            description: "This project is actually this website, written in Rust and I used yew framework.".to_string(),
+            technologies: vec!["Rust".to_string(), "Scss".to_string(), "Github Pages".to_string(),"Trunk".to_string()],
             live_url: None,
-            repo_url: Some("https://github.com/Dubium0/MarchingCubes".to_string()),
-            image_url: Some("images/marchingCubes.gif".to_string()), // Example: Can be jpg, png, gif etc.
+            repo_url: Some("https://github.com/Dubium0/Dubium0.github.io".to_string()),
+            image_url: Some("images/website.gif".to_string()), // Example: Can be jpg, png, gif etc.
             category : ProjectCategory::Personal,
         },
+       
         Project {
             title: "Ocean Simulation".to_string(),
             description: "Developed for CS426 Spring 2024, this project achieves real-time ocean surface simulation in Unity through procedural mesh generation, gertsner waves, and dynamic tessellation for visual appeal and performance.".to_string(),
@@ -87,16 +88,16 @@ pub fn projects() -> Html {
             image_url: Some("images/jadeEngine.gif".to_string()), // Example: Can be jpg, png, gif etc.
             category : ProjectCategory::Personal,
         },
-        Project {
-            title: "Behavior Tree Implementation".to_string(),
-            description: "Main purpose of this project is demonstrating common software engineering patterns for CS434 (Software Engineering Design Course). I made my demonstration with C# implementation of a Behavior Tree (BT), a popular AI technique used in game development and robotics for autonomous agents.".to_string(),
-            technologies: vec!["C#".to_string(), "Unity".to_string()],
-            live_url: Some("https://yunyun0909.itch.io/behavior-tree-demo".to_string()), //
-            repo_url: Some("https://github.com/Dubium0/BT-Implementation".to_string()),
-            image_url: Some("images/behaviorTreeExample.png".to_string()), // Example: Can be jpg, png, gif etc.
+     
+         Project {
+            title: "Marching Cubes".to_string(),
+            description: "This project is about rendering a procedurally generated cave through a 3D noise with marching cube algorithm.".to_string(),
+            technologies: vec!["C++".to_string(), "OpenGL".to_string(), "GLSL".to_string(),"CMake".to_string(),"Visual Studio".to_string(),"GLFW".to_string(),],
+            live_url: None,
+            repo_url: Some("https://github.com/Dubium0/MarchingCubes".to_string()),
+            image_url: Some("images/marchingCubes.gif".to_string()), // Example: Can be jpg, png, gif etc.
             category : ProjectCategory::Personal,
         },
-       
         Project {
             title: "Battleship".to_string(),
             description: "This is a desktop version of the classic board game called BattleShip. Main purpose of this project is utilizing software engineering patterns. Project was implemented as a group project for the CS 320 ( Software Engineering )".to_string(),
@@ -124,6 +125,16 @@ pub fn projects() -> Html {
             image_url: Some("images/questlog.gif".to_string()), // Example: Can be jpg, png, gif etc.
             category : ProjectCategory::Group,
         },
+           Project {
+            title: "Behavior Tree Implementation".to_string(),
+            description: "Main purpose of this project is demonstrating common software engineering patterns for CS434 (Software Engineering Design Course). I made my demonstration with C# implementation of a Behavior Tree (BT), a popular AI technique used in game development and robotics for autonomous agents.".to_string(),
+            technologies: vec!["C#".to_string(), "Unity".to_string()],
+            live_url: Some("https://yunyun0909.itch.io/behavior-tree-demo".to_string()), //
+            repo_url: Some("https://github.com/Dubium0/BT-Implementation".to_string()),
+            image_url: Some("images/behaviorTreeExample.png".to_string()), // Example: Can be jpg, png, gif etc.
+            category : ProjectCategory::Personal,
+        },
+     
         // Add more projects here, including their image_url
     ];
 
