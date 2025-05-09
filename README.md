@@ -1,2 +1,2 @@
 # My personal Website
-Written in rust.
+Written in rust with yew framework.
