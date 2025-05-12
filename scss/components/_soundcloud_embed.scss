@@ -1,0 +1,110 @@
+// scss/components/_soundcloud_embed.scss
+
+// Wrapper for the entire widget (trigger + panel)
+.soundcloud-widget-wrapper { // Renamed
+    position: fixed;
+    top: 40%; 
+    right: 0; 
+    transform: translateY(-50%); 
+    z-index: 900; 
+    cursor: pointer; 
+    width: 40px; 
+    height: 50px; 
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+// Trigger button (initially visible at the edge)
+.soundcloud-trigger { // Renamed
+    position: absolute; 
+    top: 50%;
+    right: 0; 
+    transform: translateY(-50%); 
+    background-color: var(--bg-card); 
+    color: var(--text-secondary); 
+    padding: 0.8rem 0.5rem; 
+    border: 1px solid var(--border-color);
+    border-right: none; 
+    border-radius: 8px 0 0 8px; 
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 50px; 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color var(--transition-speed) ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    z-index: 2; 
+    
+    .soundcloud-trigger-icon { // Renamed
+        display: block;
+        width: 24px;  
+        height: auto; 
+        max-height: 24px; 
+    }
+}
+
+// Slide-out panel containing the player
+.soundcloud-slide-out { // Renamed
+    position: absolute; 
+    top: 50%; 
+    left: 100%; 
+    transform: translateY(-50%); 
+    width: 300px; // Adjust if SoundCloud player needs different width
+    max-width: 80vw; 
+    background-color: var(--bg-card); 
+    border: 1px solid var(--border-color);
+    border-radius: 12px 0 0 12px; 
+    box-shadow: -3px 0px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; 
+    pointer-events: none; 
+    opacity: 0; 
+    z-index: 1; 
+}
+
+// When the wrapper is hovered:
+.soundcloud-widget-wrapper:hover { // Renamed
+    width: calc(300px + 40px); // Panel width + trigger width 
+    right: 0; 
+
+    .soundcloud-trigger { // Renamed
+        transform: translateX(-300px) translateY(-50%); // Adjust -300px if panel width changes
+    }
+    .soundcloud-slide-out { // Renamed
+        transform: translateX(-300px) translateY(-50%); // Adjust -300px if panel width changes
+        pointer-events: auto; 
+        opacity: 1; 
+    }
+}
+
+.soundcloud-player-container { // Renamed
+    line-height: 0; 
+    padding: 5px; // Small padding around iframe
+
+    iframe {
+        display: block; 
+        border-radius: 8px; // Match inner rounding
+    }
+}
+
+// Adjustments for smaller screens if needed
+@media (max-width: 576px) {
+    .soundcloud-slide-out { // Renamed
+        width: 250px; 
+    }
+    .soundcloud-widget-wrapper:hover { // Renamed
+         width: calc(250px + 35px); 
+    }
+    .soundcloud-widget-wrapper:hover .soundcloud-trigger { // Renamed
+        transform: translateX(-250px) translateY(-50%);
+    }
+     .soundcloud-widget-wrapper:hover .soundcloud-slide-out { // Renamed
+         transform: translateX(-250px) translateY(-50%);
+     }
+    .soundcloud-trigger { // Renamed
+         padding: 0.8rem 0.5rem; // Keep padding for better click area
+         min-height: 40px; 
+         .soundcloud-trigger-icon { width: 20px; max-height: 20px; } // Renamed
+    }
+     .soundcloud-widget-wrapper { // Renamed
+        width: 35px; 
+        height: 40px; 
+    }
+}

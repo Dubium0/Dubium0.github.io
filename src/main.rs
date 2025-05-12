@@ -15,7 +15,8 @@ use components::navbar::Navbar;
 use components::experiences::Experiences;
 use components::education::Education;
 use components::skills::Skills; 
-use components::spotify_embed::SpotifyEmbed;
+//use components::spotify_embed::SpotifyEmbed;
+use components::soundcloud_embed::SoundCloudEmbed;
 // Import custom hooks
 use hooks::use_theme::use_theme;
 use hooks::use_loader::use_loader;
@@ -28,7 +29,7 @@ fn app() -> Html {
 
     html! {
         <>
-            <SpotifyEmbed />
+            <SoundCloudEmbed />
             <Navbar current_theme={(*theme).clone()} toggle_theme={toggle_theme.clone()} />
             <Hero />
             <main class="main-content">

@@ -14,3 +14,4 @@ pub mod education_item; // <-- Add this
 pub mod education;      // <-- Add this
 pub mod skills;
 pub mod spotify_embed;
+pub mod soundcloud_embed;
