@@ -108,6 +108,16 @@ pub fn projects() -> Html {
             category : ProjectCategory::Group,
         },
         Project {
+            title: "Football Sim".to_string(),
+            description: "Football Sim is my senior project for CS degree. Aim of this project is to make a football game that supports; Football Player vs AI, Local PVP and Online Multiplayer PVP. We achieved multiplayer with implementing a P2P connection between players by using Unity Netcode and SteamWorks. Football Player AI managed by a behavior tree.".to_string(),
+            technologies: vec!["Unity".to_string(),"C#".to_string(),"Netcode".to_string(),"Steamworks".to_string(),"Behavior Tree".to_string()],
+            live_url: None, //
+            repo_url: Some("https://github.com/Dubium0/FutbolSim".to_string()),
+            image_url: Some("images/footballSim.gif".to_string()), // Example: Can be jpg, png, gif etc.
+            category : ProjectCategory::Group,
+            
+        },
+        Project {
             title: "The Jester".to_string(),
             description: "The Jester was our submission for GGJ-2024. The theme of the game jam was 'Make me laugh'. My friend and I made a game about being a jester to a king. Through cards, we try to match the king's mood. If we achieve this, we survive; if not, the king will kill us XD.".to_string(),
             technologies: vec!["Unity".to_string(),"C#".to_string()],
