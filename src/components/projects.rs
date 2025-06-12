@@ -21,6 +21,8 @@ use super::project_card::ProjectCard;
 pub enum ProjectCategory {
     Games,
     Other,
+    Fullstack,
+    GraphicsProgramming,
     // Add other categories if needed, e.g., Contribution
 }
 
