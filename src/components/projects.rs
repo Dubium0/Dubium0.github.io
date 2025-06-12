@@ -19,8 +19,8 @@ use super::project_card::ProjectCard;
 // --- Enum for Project Category ---
 #[derive(Clone, PartialEq)]
 pub enum ProjectCategory {
-    Personal,
-    Group,
+    Games,
+    Other,
     // Add other categories if needed, e.g., Contribution
 }
 
@@ -49,7 +49,7 @@ pub fn projects() -> Html {
             live_url: None,
             repo_url: Some("https://github.com/Dubium0/Dubium0.github.io".to_string()),
             image_url: Some("images/website.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
        
         Project {
@@ -59,7 +59,7 @@ pub fn projects() -> Html {
             live_url: None,//Some("https://example.com/live-demo".to_string()),
             repo_url: Some("https://github.com/Dubium0/OceanSimulation".to_string()),
             image_url: Some("images/OceanSimulation.gif".to_string()), // Example: Place preview in assets folder
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
         Project {
             title: "Game Library API".to_string(),
@@ -68,7 +68,7 @@ pub fn projects() -> Html {
             live_url: None,
             repo_url: Some("https://github.com/Dubium0/GameLib".to_string()),
             image_url: Some("images/gamelib.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
         Project {
             title: "OpenGL Template".to_string(),
@@ -77,7 +77,7 @@ pub fn projects() -> Html {
             live_url: None,
             repo_url: Some("https://github.com/Dubium0/OpenGL_Application".to_string()),
             image_url: Some("images/openglTemplate.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
         Project {
             title: "Jade Game Engine".to_string(),
@@ -86,7 +86,7 @@ pub fn projects() -> Html {
             live_url: None, //
             repo_url: Some("https://github.com/Dubium0/Jade".to_string()),
             image_url: Some("images/jadeEngine.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
      
          Project {
@@ -96,16 +96,7 @@ pub fn projects() -> Html {
             live_url: None,
             repo_url: Some("https://github.com/Dubium0/MarchingCubes".to_string()),
             image_url: Some("images/marchingCubes.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
-        },
-        Project {
-            title: "Battleship".to_string(),
-            description: "This is a desktop version of the classic board game called BattleShip. Main purpose of this project is utilizing software engineering patterns. Project was implemented as a group project for the CS 320 ( Software Engineering )".to_string(),
-            technologies: vec!["Java".to_string()],
-            live_url: None, //
-            repo_url: Some("https://github.com/Dubium0/BattleShip".to_string()),
-            image_url: Some("images/battleship.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Group,
+            category : ProjectCategory::Other,
         },
         Project {
             title: "Football Sim".to_string(),
@@ -114,7 +105,7 @@ pub fn projects() -> Html {
             live_url: None, //
             repo_url: Some("https://github.com/Dubium0/FutbolSim".to_string()),
             image_url: Some("images/footballSim.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Group,
+            category : ProjectCategory::Games,
             
         },
         Project {
@@ -124,7 +115,7 @@ pub fn projects() -> Html {
             live_url: None, //
             repo_url: Some("https://github.com/Dubium0/Jester".to_string()),
             image_url: Some("images/jester.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Group,
+            category : ProjectCategory::Games,
         },
         Project {
             title: "QuestLog".to_string(),
@@ -133,31 +124,65 @@ pub fn projects() -> Html {
             live_url: None, //
             repo_url: Some("https://github.com/Dubium0/QuestLog".to_string()),
             image_url: Some("images/questlog.gif".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Group,
+            category : ProjectCategory::Other,
         },
-           Project {
+        Project {
             title: "Behavior Tree Implementation".to_string(),
             description: "Main purpose of this project is demonstrating common software engineering patterns for CS434 (Software Engineering Design Course). I made my demonstration with C# implementation of a Behavior Tree (BT), a popular AI technique used in game development and robotics for autonomous agents.".to_string(),
             technologies: vec!["C#".to_string(), "Unity".to_string()],
             live_url: Some("https://yunyun0909.itch.io/behavior-tree-demo".to_string()), //
             repo_url: Some("https://github.com/Dubium0/BT-Implementation".to_string()),
             image_url: Some("images/behaviorTreeExample.png".to_string()), // Example: Can be jpg, png, gif etc.
-            category : ProjectCategory::Personal,
+            category : ProjectCategory::Other,
         },
-     
+        
+        Project {
+            title: "Nuts & Bolts Puzzle Game".to_string(),
+            description: "The goal of the game is to release all the nuts from the bolts. Sounds simple, right? 
+            :D I worked on this project during my internship at Any Games and gained valuable insights. 
+            I learned a lot, particularly about modular design practices for games. ( Can't share the code because of ownership)".to_string(),
+            technologies: vec!["C#".to_string(), "Unity".to_string()],
+            live_url: None, //
+            repo_url: None,
+            image_url: Some("images/nutandbolts.gif".to_string()), // Example: Can be jpg, png, gif etc.
+            category : ProjectCategory::Games,
+        },
+        
+        Project {
+            title: "Multiplayer Plate up clone".to_string(),
+            description: "In this project I developed online futures. I used photon PUN 2. 
+            I learned RPC ‘s to sync behaviors  and the other main ideas of online gameplay. Also, common software patterns utilized such as observer and mediator.
+            ( Can't share the code because of ownership)".to_string(),
+            technologies: vec!["C#".to_string(), "Unity".to_string(),"Photon".to_string(),"Networking".to_string()],
+            live_url: None, //
+            repo_url: None,
+            image_url: Some("images/plateup.gif".to_string()), // Example: Can be jpg, png, gif etc.
+            category : ProjectCategory::Games,
+        },
+        Project {
+            title: "Battleship".to_string(),
+            description: "This is a desktop version of the classic board game called BattleShip. Main purpose of this project is utilizing software engineering patterns. Project was implemented as a group project for the CS 320 ( Software Engineering )".to_string(),
+            technologies: vec!["Java".to_string()],
+            live_url: None, //
+            repo_url: Some("https://github.com/Dubium0/BattleShip".to_string()),
+            image_url: Some("images/battleship.gif".to_string()), // Example: Can be jpg, png, gif etc.
+            category : ProjectCategory::Games,
+        },
+        
+        
         // Add more projects here, including their image_url
-    ];
-
-    // Filter projects into separate lists
-    let personal_projects: Vec<Project> = all_projects
-        .iter()
-        .filter(|p| p.category == ProjectCategory::Personal)
-        .cloned()
-        .collect();
-
-    let group_projects: Vec<Project> = all_projects
-        .iter()
-        .filter(|p| p.category == ProjectCategory::Group)
+        ];
+        
+        // Filter projects into separate lists
+        let game_projects: Vec<Project> = all_projects
+            .iter()
+            .filter(|p| p.category == ProjectCategory::Games)
+            .cloned()
+            .collect();
+        
+        let other_projects: Vec<Project> = all_projects
+            .iter()
+        .filter(|p| p.category == ProjectCategory::Other)
         .cloned()
         .collect();
 
@@ -187,18 +212,18 @@ pub fn projects() -> Html {
             <p>{ "Here's a selection of work I'm proud of. Hover over cards for details!" }</p>
 
             // --- Personal Projects Subsection ---
-            if !personal_projects.is_empty() {
+            if !game_projects.is_empty() {
                 <div class="project-category-group"> // Wrapper for category
-                    <h3 class="project-category-title">{ "Personal Projects" }</h3>
-                    { render_project_list(personal_projects) }
+                    <h3 class="project-category-title">{ "Game Projects" }</h3>
+                    { render_project_list(game_projects) }
                 </div>
             }
 
             // --- Group Projects Subsection ---
-             if !group_projects.is_empty() {
+             if !other_projects.is_empty() {
                 <div class="project-category-group"> // Wrapper for category
-                    <h3 class="project-category-title">{ "Group Projects" }</h3>
-                    { render_project_list(group_projects) }
+                    <h3 class="project-category-title">{ "Other Projects" }</h3>
+                    { render_project_list(other_projects) }
                 </div>
             }
 
